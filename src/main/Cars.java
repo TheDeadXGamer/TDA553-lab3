@@ -26,27 +26,27 @@ public class Cars implements Movable{
         this.enginePower = enginePower;
         this.modelName = modelName;
         this.carSize = carSize;
-        facingDirection = Direction.NORTH;
+        facingDirection = Direction.EAST;
         position = new CarPosition(0f,0f);
         stopEngine();
     }
     
-    public final int getNrDoors(){
+    public int getNrDoors(){
         return nrDoors;
     }
-    public final float getEnginePower(){
+    public float getEnginePower(){
         return enginePower;
     }
 
-    public final float getCurrentSpeed(){
+    public float getCurrentSpeed(){
         return currentSpeed;
     }
 
-    public final Color getColor(){
+    public Color getColor(){
         return color;
     }
 
-    public final String getModelName(){
+    public String getModelName(){
         return modelName;
     }
 
@@ -92,6 +92,7 @@ public class Cars implements Movable{
         }
     }
 
+    @Override
     public void turnLeft(){
         switch (facingDirection) {
             case NORTH:
@@ -109,6 +110,7 @@ public class Cars implements Movable{
         }
     }
 
+    @Override
     public void turnRight(){
         switch (facingDirection) {
             case NORTH:
@@ -126,6 +128,7 @@ public class Cars implements Movable{
         }
     }
     
+    @Override
     public void move(){
         switch (facingDirection) {
             case NORTH:

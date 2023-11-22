@@ -13,6 +13,8 @@ import java.util.ArrayList;
 public class CarController {
     // member fields:
 
+    WindowSettings windowSettings = new WindowSettings();
+
     // The delay (ms) corresponds to 20 updates a sec (hz)
     private final int delay = 50;
     // The timer is started with an listener (see below) that executes the statements
@@ -48,7 +50,13 @@ public class CarController {
                 car.move();
                 int x = (int) Math.round(car.getX());
                 int y = (int) Math.round(car.getY());
-                frame.drawPanel.moveit(x, y);
+                frame.drawPanel.moveCar(x, y);
+
+                if(isTouchingSurface(car)){
+                    car.turnLeft();
+                    car.turnLeft();
+                }
+                
                 // repaint() calls the paintComponent method of the panel
                 frame.drawPanel.repaint();
             }
@@ -58,9 +66,42 @@ public class CarController {
     // Calls the gas method for each car once
     void gas(int amount) {
         float gas = ((float) amount) / 100;
-        for (Cars car : cars
-                ) {
+        for (Cars car : cars) {
             car.gas(gas);
         }
+    }
+
+     // Calls the gas method for each car once
+    void brake(int amount) {
+        float gas = ((float) amount) / 100;
+        for (Cars car : cars) {
+            car.brake(gas);
+        }
+    }
+
+    void startCars(){
+        for (Cars car : cars){
+            car.startEngine();
+        }
+    }
+
+    void stopCars(){
+        for (Cars car : cars){
+            car.stopEngine();
+        }
+    }
+
+    private boolean isTouchingSurface(Cars car){
+        int _carWidth = 100;
+        int _carHeight = 60;
+        boolean _isTouchingRightSide = car.getX() > windowSettings.getWindowWidth() - _carWidth;
+        boolean _isTouchingLeftSide = car.getX() < 0;
+        boolean _isTouchingBottom = car.getY() > windowSettings.getWindowHeight() - _carHeight;
+        boolean _isTouchingTop = car.getY() < 0;
+
+        boolean _isTouchingSide = _isTouchingLeftSide || _isTouchingRightSide;
+        boolean _isTouchingOpposites = _isTouchingBottom || _isTouchingTop;
+
+        return (_isTouchingSide||_isTouchingOpposites) ? true : false;
     }
 }

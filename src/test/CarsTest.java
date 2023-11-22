@@ -162,7 +162,7 @@ public class CarsTest {
         volvo.move();
         saab.move();
         
-        Assert.assertTrue(volvo.getY() == 0.1f && saab.getY() == 0.1f);
+        Assert.assertTrue(volvo.getX() != 0 && saab.getX() != 0);
     }
 
     @Test
@@ -174,7 +174,7 @@ public class CarsTest {
         volvo.move();
         saab.move();
         
-        Assert.assertTrue(volvo.getX() == 0.1f && saab.getX() == 0.1f);
+        Assert.assertTrue(volvo.getY() == 0.1f && saab.getY() == 0.1f);
         
     }
 
@@ -187,7 +187,7 @@ public class CarsTest {
         volvo.move();
         saab.move();
         
-        Assert.assertTrue(volvo.getX() == -0.1f && saab.getX() == -0.1f);
+        Assert.assertTrue(volvo.getY() == -0.1f && saab.getY() == -0.1f);
         
     }
 

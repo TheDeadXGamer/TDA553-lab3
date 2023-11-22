@@ -2,12 +2,12 @@ package main;
 import java.awt.*;
 import java.util.ArrayList;
 
-public class transportTruck extends Cars{
-    private Boolean bedDown;
+public class TransportTruck extends Cars{
+    private boolean bedDown;
     private int maxNrCars;
     ArrayList<Cars> carLoad;
 
-    public transportTruck(int maxNrCars) {
+    public TransportTruck(int maxNrCars) {
         super(2, Color.magenta, 100, "TransportTruck", 1000);
         bedDown = false; 
         this.maxNrCars = maxNrCars;
@@ -22,7 +22,7 @@ public class transportTruck extends Cars{
         return carLoad;
     }
 
-    public Boolean getBedState() {
+    public boolean getBedState() {
         return bedDown;
     }
     
@@ -36,20 +36,26 @@ public class transportTruck extends Cars{
         }
     }
 
-    //Q HERE
-    public void loadCar(Cars car) {
-        
-        Boolean _canBeLoaded = true;
+    private boolean canBeLoaded(Cars car) {
+        boolean _canBeLoaded = true;
 
+        boolean _isNotNear = CarPosition.calcDistance(this,car) > 1f;
+        boolean _isNotMoving = this.getCurrentSpeed() > 0;
+        boolean _carTooBig = car.getCarSize() > 100;
 
-        if (CarPosition.calcDistance(this,car) > 1f || !bedDown || car.getCarSize() > 100 || this.getCurrentSpeed() > 0) { //This
+        if (_isNotNear || !bedDown || _carTooBig || _isNotMoving) {
             _canBeLoaded = false;
         }
+        return _canBeLoaded;
+    }
+    
+    public void loadCar(Cars car) {
+        
+        boolean _canBeLoaded = canBeLoaded(car);
 
         if (_canBeLoaded && carLoad.size() < maxNrCars) {
             carLoad.add(car);
         }
-        
     }
     
     public void unloadCar() {

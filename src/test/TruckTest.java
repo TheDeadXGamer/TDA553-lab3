@@ -1,4 +1,3 @@
-//import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -8,14 +7,14 @@ import main.Cars;
 import main.Saab95;
 import main.Scania;
 import main.Volvo240;
-import main.transportTruck;
+import main.TransportTruck;
 
 public class TruckTest {
 
     
     
     Scania myScania = new Scania();
-    transportTruck myTruck = new transportTruck(4);
+    TransportTruck myTruck = new TransportTruck(4);
     
     @Test
     public void TrailerDriveTest() {
@@ -91,7 +90,7 @@ public class TruckTest {
         Volvo240 volvo1 = new Volvo240();
         Volvo240 volvo2 = new Volvo240();
 
-        transportTruck myTruck = new transportTruck(3);
+        TransportTruck myTruck = new TransportTruck(3);
         myTruck.LowerBed();
 
         myTruck.loadCar(saab1);
@@ -109,7 +108,7 @@ public class TruckTest {
         Volvo240 volvo1 = new Volvo240();
         Volvo240 volvo2 = new Volvo240();
 
-        transportTruck myTruck = new transportTruck(4);
+        TransportTruck myTruck = new TransportTruck(4);
         myTruck.LowerBed();
         myTruck.loadCar(saab1);
         myTruck.loadCar(volvo1);
