@@ -2,6 +2,8 @@ package main;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
@@ -9,14 +11,34 @@ import javax.swing.*;
 
 public class DrawPanel extends JPanel{
 
-    // Just a single image
-    Image image;
-    // To keep track of a singel cars position
-    Point position = new Point(0,0);
+    private final int arraySize = 3;
 
-    void moveCar(int x, int y){
-        position.x = x;
-        position.y = y;
+    // Just a single image
+    private Image volvoImage;
+    private Image saabImage;
+    private Image scaniaImage;
+    // To keep track of a singel cars position
+    private Point volvoPosition = new Point(0,0);
+    private Point saabPosition = new Point(0,160);
+    private Point scaniaPosition = new Point(0,320);
+    
+    private ArrayList<Image> images = new ArrayList<>(arraySize);
+    private ArrayList<Point> points = new ArrayList<>(arraySize);
+    
+    public void addAllPositions(Point...points){
+        for(Point point : points){
+            this.points.add(point);
+        }
+    }
+
+    public void addAllImages(Image...images){
+        for(Image image : images){
+            this.images.add(image);
+        }
+    }
+    
+    void moveCar(int index, int x, int y){
+        points.set(index,new Point(x,y));
     }
 
     // Initializes the panel and reads the images
@@ -32,18 +54,24 @@ public class DrawPanel extends JPanel{
 
             // Rememember to rightclick src New -> Package -> name: pics -> MOVE *.jpg to pics.
             // if you are starting in IntelliJ.
-            image = ImageIO.read(new File("src\\pics\\Volvo240.jpg"));
-        } 
+            volvoImage = ImageIO.read(new File("src\\pics\\Volvo240.jpg"));
+            saabImage = ImageIO.read(new File("src\\pics\\Saab95.jpg"));
+            scaniaImage = ImageIO.read(new File("src\\pics\\Scania.jpg"));
+
+            addAllImages(volvoImage,saabImage,scaniaImage);
+            addAllPositions(volvoPosition,saabPosition,scaniaPosition);
+        }
         catch (IOException ex){
             ex.printStackTrace();
         }
     }
 
     // This method is called each time the panel updates/refreshes/repaints itself
-    // TODO: Change to suit your needs.
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        g.drawImage(image, position.x, position.y, null); // see javadoc for more info on the parameters
+        for(int k = 0; k < arraySize; k++){
+            g.drawImage(images.get(k), points.get(k).x, points.get(k).y, null);
+        }
     }
 }

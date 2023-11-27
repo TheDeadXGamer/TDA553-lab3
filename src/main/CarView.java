@@ -58,8 +58,6 @@ public class CarView extends JFrame{
 
         this.add(drawPanel);
 
-
-
         SpinnerModel spinnerModel =
                 new SpinnerNumberModel(0, //initial value
                         0, //min
@@ -90,12 +88,10 @@ public class CarView extends JFrame{
         this.add(controlPanel);
         controlPanel.setBackground(Color.CYAN);
 
-
         startButton.setBackground(Color.blue);
         startButton.setForeground(Color.green);
         startButton.setPreferredSize(new Dimension(windowWidth/5-15,200));
         this.add(startButton);
-
 
         stopButton.setBackground(Color.red);
         stopButton.setForeground(Color.black);
@@ -131,7 +127,19 @@ public class CarView extends JFrame{
             }
         });
 
-        
+        turboOnButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                carC.turboOn();
+            }
+        });
+
+        turboOffButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                carC.turboOff();
+            }
+        });
 
         // Make the frame pack all it's components by respecting the sizes if possible.
         this.pack();

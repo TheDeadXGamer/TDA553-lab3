@@ -72,6 +72,10 @@ public class Cars implements Movable{
         return enginePower * 0.01f;
     }
 
+    public Direction getFacingDirection() {
+        return facingDirection;
+    }
+
     private void incrementSpeed(float amount){
 	    currentSpeed = Math.min(getCurrentSpeed() + getSpeedFactor() * amount,enginePower);
     }

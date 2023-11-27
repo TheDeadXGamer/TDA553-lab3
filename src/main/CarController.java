@@ -1,5 +1,8 @@
 package main;
 import javax.swing.*;
+
+import main.Cars.Direction;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -13,10 +16,14 @@ import java.util.ArrayList;
 public class CarController {
     // member fields:
 
+    // Import settings for the window the car can move on.
     WindowSettings windowSettings = new WindowSettings();
+    int carWidth = 100;
+    int carHeight = 60;
+    int controllerHeight = 200;
 
     // The delay (ms) corresponds to 20 updates a sec (hz)
-    private final int delay = 50;
+    private final int delay = 25;
     // The timer is started with an listener (see below) that executes the statements
     // each step between delays.
     private Timer timer = new Timer(delay, new TimerListener());
@@ -26,13 +33,17 @@ public class CarController {
     // A list of cars, modify if needed
     ArrayList<Cars> cars = new ArrayList<>();
 
-    //methods:
-
     public static void main(String[] args) {
         // Instance of this class
         CarController cc = new CarController();
 
         cc.cars.add(new Volvo240());
+
+        cc.cars.add(new Saab95());
+        cc.cars.get(1).setPosition(0, 160);
+
+        cc.cars.add(new Scania());
+        cc.cars.get(2).setPosition(0, 340);
 
         // Start a new view and send a reference of self
         cc.frame = new CarView("CarSim 1.0", cc);
@@ -50,12 +61,16 @@ public class CarController {
                 car.move();
                 int x = (int) Math.round(car.getX());
                 int y = (int) Math.round(car.getY());
-                frame.drawPanel.moveCar(x, y);
-
-                if(isTouchingSurface(car)){
+                
+                if(isDrivingIntoSurface(car)){
+                    car.stopEngine();
                     car.turnLeft();
                     car.turnLeft();
+                    car.startEngine();
                 }
+
+                inBounds(car, x, y);
+                frame.drawPanel.moveCar(cars.indexOf(car),x,y);
                 
                 // repaint() calls the paintComponent method of the panel
                 frame.drawPanel.repaint();
@@ -91,17 +106,80 @@ public class CarController {
         }
     }
 
-    private boolean isTouchingSurface(Cars car){
-        int _carWidth = 100;
-        int _carHeight = 60;
-        boolean _isTouchingRightSide = car.getX() > windowSettings.getWindowWidth() - _carWidth;
+    void turboOn(){
+        for (Cars car : cars){
+            if (car instanceof Saab95){
+                ((Saab95)car).setTurboOn();
+            }
+        }
+    }
+    
+    void turboOff(){
+        for (Cars car : cars){
+            if (car instanceof Saab95){
+                ((Saab95)car).setTurboOff();
+            }
+        }
+    }
+
+    void lowerBed(){
+        for (Cars car : cars){
+            if (car instanceof Scania){
+                ((Scania)car).LowerTrailer(70f);
+            }
+        }
+    }
+
+    void raiseBed(){
+        for (Cars car : cars){
+            if (car instanceof Scania){
+                ((Scania)car).RaiseTrailer(0f);
+            }
+        }
+    }
+
+    private boolean isDrivingIntoSurface(Cars car){
+        
+        boolean _isTouchingRightSide = car.getX() > windowSettings.getWindowWidth() - carWidth;
         boolean _isTouchingLeftSide = car.getX() < 0;
-        boolean _isTouchingBottom = car.getY() > windowSettings.getWindowHeight() - _carHeight;
+        boolean _isTouchingBottom = car.getY() > windowSettings.getWindowHeight() - controllerHeight - carHeight;
         boolean _isTouchingTop = car.getY() < 0;
 
-        boolean _isTouchingSide = _isTouchingLeftSide || _isTouchingRightSide;
-        boolean _isTouchingOpposites = _isTouchingBottom || _isTouchingTop;
+        boolean _driveIntoLeftSide = _isTouchingLeftSide && car.getFacingDirection() == Direction.WEST;
+        boolean _driveIntoRightSide = _isTouchingRightSide && car.getFacingDirection() == Direction.EAST;
+        boolean _driveIntoSide = _driveIntoLeftSide || _driveIntoRightSide;
 
-        return (_isTouchingSide||_isTouchingOpposites) ? true : false;
+        boolean _driveIntoTop = _isTouchingTop && car.getFacingDirection() == Direction.NORTH;
+        boolean _driveIntoBottom = _isTouchingBottom && car.getFacingDirection() == Direction.SOUTH;
+        boolean _driveIntoOpposites = _driveIntoTop || _driveIntoBottom;
+
+        return (_driveIntoSide || _driveIntoOpposites) ? true : false;
+    }
+
+    /**
+     * Keeps the Cars car from going out of bounds
+     */
+    private void inBounds(Cars car, int xPos, int yPos) {
+        
+        int _newXPos = xPos;
+        int _newYPos = yPos;
+        
+        if (xPos + carWidth > windowSettings.getWindowWidth()) {
+            _newXPos = windowSettings.getWindowWidth() - carWidth -1;
+        }
+
+        if (xPos < 0) {
+            _newXPos = 0;
+        }
+
+        if (yPos + carHeight > windowSettings.getWindowHeight()) {
+            _newYPos = windowSettings.getWindowHeight() - carHeight;
+        }
+
+        if (yPos < 0) {
+            _newYPos = 0;
+        }
+
+        frame.drawPanel.moveCar(cars.indexOf(car),_newXPos, _newYPos);
     }
 }

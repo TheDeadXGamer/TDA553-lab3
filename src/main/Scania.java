@@ -14,6 +14,7 @@ public class Scania extends Cars{
     public void RaiseTrailer(float x) {
         if(getCurrentSpeed() == 0) {
             trailerAngle = Math.min(70, trailerAngle += x);
+            System.out.println("Raised trailer");
         }
     }
 
