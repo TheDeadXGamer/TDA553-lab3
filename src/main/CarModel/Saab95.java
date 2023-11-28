@@ -1,11 +1,11 @@
-package main;
+package main.CarModel;
 import java.awt.*;
 
 public class Saab95 extends Cars {
     private float turbo; // Set to 1 when off
     
-    public Saab95(){
-        super(2, Color.red, 125, "Saab95", 100);
+    public Saab95(float x,float y){
+        super(2, Color.red, 125, "Saab95", 100, x, y);
 	    turbo = 1f;
     }
 

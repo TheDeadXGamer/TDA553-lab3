@@ -1,6 +1,8 @@
 package main;
 import java.util.ArrayList;
 
+import main.CarModel.Cars;
+
 public class Workshop<T extends Cars> {
     
     private int maxNrOfCars;

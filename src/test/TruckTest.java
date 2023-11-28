@@ -3,18 +3,18 @@ import java.util.Arrays;
 
 import org.junit.*;
 
-import main.Cars;
-import main.Saab95;
-import main.Scania;
-import main.Volvo240;
-import main.TransportTruck;
+import main.CarModel.Cars;
+import main.CarModel.Saab95;
+import main.CarModel.Scania;
+import main.CarModel.TransportTruck;
+import main.CarModel.Volvo240;
 
 public class TruckTest {
 
     
     
-    Scania myScania = new Scania();
-    TransportTruck myTruck = new TransportTruck(4);
+    Scania myScania = new Scania(0,0);
+    TransportTruck myTruck = new TransportTruck(4,0,0);
     
     @Test
     public void TrailerDriveTest() {
@@ -64,10 +64,10 @@ public class TruckTest {
 
     @Test
     public void LoadCars() {
-        Saab95 saab1 = new Saab95();
-        Saab95 saab2 = new Saab95();
-        Volvo240 volvo1 = new Volvo240();
-        Volvo240 volvo2 = new Volvo240();
+        Saab95 saab1 = new Saab95(0,0);
+        Saab95 saab2 = new Saab95(0,0);
+        Volvo240 volvo1 = new Volvo240(0,0);
+        Volvo240 volvo2 = new Volvo240(0,0);
 
         myTruck.LowerBed();
 
@@ -85,12 +85,12 @@ public class TruckTest {
 
     @Test
     public void MaxNrOfCars() {
-        Saab95 saab1 = new Saab95();
-        Saab95 saab2 = new Saab95();
-        Volvo240 volvo1 = new Volvo240();
-        Volvo240 volvo2 = new Volvo240();
+        Saab95 saab1 = new Saab95(0,0);
+        Saab95 saab2 = new Saab95(0,0);
+        Volvo240 volvo1 = new Volvo240(0,0);
+        Volvo240 volvo2 = new Volvo240(0,0);
 
-        TransportTruck myTruck = new TransportTruck(3);
+        TransportTruck myTruck = new TransportTruck(3,0,0);
         myTruck.LowerBed();
 
         myTruck.loadCar(saab1);
@@ -103,12 +103,12 @@ public class TruckTest {
 
     @Test
     public void UnloadCar() {
-        Saab95 saab1 = new Saab95();
-        Saab95 saab2 = new Saab95();
-        Volvo240 volvo1 = new Volvo240();
-        Volvo240 volvo2 = new Volvo240();
+        Saab95 saab1 = new Saab95(0,0);
+        Saab95 saab2 = new Saab95(0,0);
+        Volvo240 volvo1 = new Volvo240(0,0);
+        Volvo240 volvo2 = new Volvo240(0,0);
 
-        TransportTruck myTruck = new TransportTruck(4);
+        TransportTruck myTruck = new TransportTruck(4,0,0);
         myTruck.LowerBed();
         myTruck.loadCar(saab1);
         myTruck.loadCar(volvo1);
@@ -122,10 +122,10 @@ public class TruckTest {
 
     @Test
     public void MoveLoad() {
-        Saab95 saab1 = new Saab95();
-        Saab95 saab2 = new Saab95();
-        Volvo240 volvo1 = new Volvo240();
-        Volvo240 volvo2 = new Volvo240();
+        Saab95 saab1 = new Saab95(0,0);
+        Saab95 saab2 = new Saab95(0,0);
+        Volvo240 volvo1 = new Volvo240(0,0);
+        Volvo240 volvo2 = new Volvo240(0,0);
 
         myTruck.LowerBed();
 

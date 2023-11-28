@@ -1,9 +1,11 @@
-package main;
+package main.CarModel;
 import java.awt.*;
+
+import main.Movable;
 
 public class Cars implements Movable{
 
-    enum Direction {
+    public enum Direction {
     NORTH,
     EAST,
     WEST,
@@ -20,14 +22,14 @@ public class Cars implements Movable{
     private CarPosition position;
     private boolean carIsOn;
     
-    Cars(int nrDoors,Color color,int enginePower,String modelName, int carSize){
+    Cars(int nrDoors,Color color,int enginePower,String modelName, int carSize, float x, float y){
         this.nrDoors = nrDoors;
         this.color = color;
         this.enginePower = enginePower;
         this.modelName = modelName;
         this.carSize = carSize;
         facingDirection = Direction.EAST;
-        position = new CarPosition(0f,0f);
+        position = new CarPosition(x,y);
         stopEngine();
     }
     

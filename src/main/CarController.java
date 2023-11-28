@@ -1,7 +1,11 @@
 package main;
 import javax.swing.*;
 
-import main.Cars.Direction;
+import main.CarModel.Cars;
+import main.CarModel.Saab95;
+import main.CarModel.Scania;
+import main.CarModel.Volvo240;
+import main.CarModel.Cars.Direction;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -18,16 +22,16 @@ public class CarController {
 
     // Import settings for the window the car can move on.
     WindowSettings windowSettings = new WindowSettings();
-    int carWidth = 100;
-    int carHeight = 60;
-    int controllerHeight = 200;
+    static private int carWidth = 100;
+    static private int carHeight = 60;
+    static private int controllerHeight = 200;
 
     // The delay (ms) corresponds to 20 updates a sec (hz)
     private final int delay = 25;
     // The timer is started with an listener (see below) that executes the statements
     // each step between delays.
     private Timer timer = new Timer(delay, new TimerListener());
-
+    
     // The frame that represents this instance View of the MVC pattern
     CarView frame;
     // A list of cars, modify if needed
@@ -35,15 +39,15 @@ public class CarController {
 
     public static void main(String[] args) {
         // Instance of this class
+
+        int _distanceConstant = 100 + carHeight;
+
         CarController cc = new CarController();
+        cc.cars.add(new Volvo240(0,0));
+        
+        cc.cars.add(new Saab95(0,_distanceConstant));
 
-        cc.cars.add(new Volvo240());
-
-        cc.cars.add(new Saab95());
-        cc.cars.get(1).setPosition(0, 160);
-
-        cc.cars.add(new Scania());
-        cc.cars.get(2).setPosition(0, 340);
+        cc.cars.add(new Scania(0,2*_distanceConstant));
 
         // Start a new view and send a reference of self
         cc.frame = new CarView("CarSim 1.0", cc);
@@ -133,7 +137,7 @@ public class CarController {
     void raiseBed(){
         for (Cars car : cars){
             if (car instanceof Scania){
-                ((Scania)car).RaiseTrailer(0f);
+                ((Scania)car).RaiseTrailer(70f);
             }
         }
     }

@@ -1,13 +1,13 @@
 import java.awt.Color;
 import org.junit.*;
 
-import main.Saab95;
-import main.Volvo240;
+import main.CarModel.Saab95;
+import main.CarModel.Volvo240;
 
 public class CarsTest {
 
-    Saab95 saab = new Saab95();
-    Volvo240 volvo = new Volvo240();
+    Saab95 saab = new Saab95(0,0);
+    Volvo240 volvo = new Volvo240(0,0);
 
     @Test
     public void TestNrDoors() {

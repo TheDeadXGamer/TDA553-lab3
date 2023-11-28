@@ -1,12 +1,12 @@
-package main;
+package main.CarModel;
 import java.awt.*;
 
 public class Volvo240 extends Cars{
 
     private final float trimFactor = 1.25f;
     
-    public Volvo240(){
-        super(4, Color.black, 100, "Volvo240", 100);
+    public Volvo240(float x,float y){
+        super(4, Color.black, 100, "Volvo240", 100, x, y);
     }
     
     @Override

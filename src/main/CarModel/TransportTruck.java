@@ -1,4 +1,4 @@
-package main;
+package main.CarModel;
 import java.awt.*;
 import java.util.ArrayList;
 
@@ -7,8 +7,8 @@ public class TransportTruck extends Cars{
     private int maxNrCars;
     ArrayList<Cars> carLoad;
 
-    public TransportTruck(int maxNrCars) {
-        super(2, Color.magenta, 100, "TransportTruck", 1000);
+    public TransportTruck(int maxNrCars, float x, float y) {
+        super(2, Color.magenta, 100, "TransportTruck", 1000, x, y);
         bedDown = false; 
         this.maxNrCars = maxNrCars;
         carLoad = new ArrayList<>(maxNrCars);
