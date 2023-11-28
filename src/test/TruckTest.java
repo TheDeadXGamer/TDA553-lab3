@@ -31,6 +31,7 @@ public class TruckTest {
         // You should not be able to raise the trailer while the car is moving.
         // this test is built on the fact that the car starts moving once the engine is turned on
         myScania.startEngine();
+        myScania.gas(1);
         myScania.RaiseTrailer(10);
         Assert.assertEquals(0, myScania.GetTrailerAngle(), 0);
     }

@@ -25,6 +25,7 @@ public class CarController {
     static private int carWidth = 100;
     static private int carHeight = 60;
     static private int controllerHeight = 200;
+    static int distanceConstant = 100 + carHeight;
 
     // The delay (ms) corresponds to 20 updates a sec (hz)
     private final int delay = 25;
@@ -40,14 +41,12 @@ public class CarController {
     public static void main(String[] args) {
         // Instance of this class
 
-        int _distanceConstant = 100 + carHeight;
-
         CarController cc = new CarController();
         cc.cars.add(new Volvo240(0,0));
         
-        cc.cars.add(new Saab95(0,_distanceConstant));
+        cc.cars.add(new Saab95(0,distanceConstant));
 
-        cc.cars.add(new Scania(0,2*_distanceConstant));
+        cc.cars.add(new Scania(0,2*distanceConstant));
 
         // Start a new view and send a reference of self
         cc.frame = new CarView("CarSim 1.0", cc);

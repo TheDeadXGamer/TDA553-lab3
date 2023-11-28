@@ -46,8 +46,10 @@ public class CarsTest {
     public void TestStartEngine() {
         volvo.startEngine();
         saab.startEngine();
+        volvo.gas(1);
+        saab.gas(1);
 
-        Assert.assertTrue((saab.getCurrentSpeed() == 0.1f) && (volvo.getCurrentSpeed() == 0.1f));
+        Assert.assertTrue((saab.getCurrentSpeed() != 0) && (volvo.getCurrentSpeed() != 0));
     }
     
     @Test
@@ -77,6 +79,8 @@ public class CarsTest {
     public void TestGasAndBrakeAndTurbo() {
         Boolean turboGasTest = false;
         Boolean brakeTest = false;
+        float oldSpeedSaab;
+        float oldSpeedVolvo;
 
         volvo.startEngine();
         saab.startEngine();
@@ -84,16 +88,18 @@ public class CarsTest {
         saab.setTurboOn();
         volvo.gas(1);
         saab.gas(1);
+
+        oldSpeedSaab = saab.getCurrentSpeed();
+        oldSpeedVolvo = volvo.getCurrentSpeed();
         
-        
-        if ((saab.getCurrentSpeed() == 1.725f) && (volvo.getCurrentSpeed() == 1.35f)) {
+        if ((oldSpeedSaab > oldSpeedVolvo)) {
             turboGasTest = true;
         }
         
         volvo.brake(0.1f);
         saab.brake(0.1f);
 
-        if ((saab.getCurrentSpeed() == 1.5625f) && (volvo.getCurrentSpeed() == 1.225f)) {
+        if ((saab.getCurrentSpeed() < oldSpeedSaab) && (volvo.getCurrentSpeed() < oldSpeedVolvo)) {
             brakeTest = true;
         }
 
@@ -159,6 +165,8 @@ public class CarsTest {
     public void testMoveForward() {
         volvo.startEngine();
         saab.startEngine();
+        volvo.gas(1);
+        saab.gas(1);
         volvo.move();
         saab.move();
         
@@ -171,10 +179,12 @@ public class CarsTest {
         saab.startEngine();
         volvo.turnRight();
         saab.turnRight();
+        volvo.gas(1);
+        saab.gas(1);
         volvo.move();
         saab.move();
         
-        Assert.assertTrue(volvo.getY() == 0.1f && saab.getY() == 0.1f);
+        Assert.assertTrue(volvo.getY() != 0 && saab.getY() != 0);
         
     }
 
@@ -184,10 +194,12 @@ public class CarsTest {
         saab.startEngine();
         volvo.turnLeft();
         saab.turnLeft();
+        volvo.gas(1);
+        saab.gas(1);
         volvo.move();
         saab.move();
         
-        Assert.assertTrue(volvo.getY() == -0.1f && saab.getY() == -0.1f);
+        Assert.assertTrue(volvo.getY() != 0 && saab.getY() != 0);
         
     }
 

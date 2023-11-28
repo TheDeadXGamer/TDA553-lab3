@@ -61,7 +61,6 @@ public class Cars implements Movable{
     }
 
     public void startEngine(){
-	    currentSpeed = 0.1f;
         carIsOn = true;
     }
 
