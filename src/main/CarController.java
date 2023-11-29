@@ -21,22 +21,22 @@ public class CarController {
     // member fields:
 
     // Import settings for the window the car can move on.
-    WindowSettings windowSettings = new WindowSettings();
-    static private int carWidth = 100;
+    private WindowSettings windowSettings = new WindowSettings();
+    private int carWidth = 100;
     static private int carHeight = 60;
-    static private int controllerHeight = 200;
-    static int distanceConstant = 100 + carHeight;
+    private int controllerHeight = 200;
+    static int distanceConstantY = 100 + carHeight;
 
     // The delay (ms) corresponds to 20 updates a sec (hz)
-    private final int delay = 25;
+    private final int DELAY = 25;
     // The timer is started with an listener (see below) that executes the statements
     // each step between delays.
-    private Timer timer = new Timer(delay, new TimerListener());
+    private Timer timer = new Timer(DELAY, new TimerListener());
     
     // The frame that represents this instance View of the MVC pattern
-    CarView frame;
+    private CarView frame;
     // A list of cars, modify if needed
-    ArrayList<Cars> cars = new ArrayList<>();
+    private ArrayList<Cars> cars = new ArrayList<>();
 
     public static void main(String[] args) {
         // Instance of this class
@@ -44,9 +44,9 @@ public class CarController {
         CarController cc = new CarController();
         cc.cars.add(new Volvo240(0,0));
         
-        cc.cars.add(new Saab95(0,distanceConstant));
+        cc.cars.add(new Saab95(0,distanceConstantY));
 
-        cc.cars.add(new Scania(0,2*distanceConstant));
+        cc.cars.add(new Scania(0,2*distanceConstantY));
 
         // Start a new view and send a reference of self
         cc.frame = new CarView("CarSim 1.0", cc);

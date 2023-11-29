@@ -19,7 +19,6 @@ public class Scania extends Cars{
         }
     }
 
-    
     public void LowerTrailer(float x) {
         if(getCurrentSpeed() == 0) {
             trailerAngle = Math.max(minAngle, trailerAngle - x);
@@ -28,7 +27,6 @@ public class Scania extends Cars{
 
     @Override
     float getSpeedFactor(){
-        System.out.println(trailerAngle);
         if(trailerAngle == minAngle) {
             return getEnginePower() * 0.01f;
         }
@@ -38,7 +36,7 @@ public class Scania extends Cars{
         
     }
 
-    public float GetTrailerAngle() {
+    public float getTrailerAngle() {
         return trailerAngle;
     }
 }

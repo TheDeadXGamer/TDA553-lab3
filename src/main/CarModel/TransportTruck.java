@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class TransportTruck extends Cars{
     private boolean bedDown;
     private int maxNrCars;
-    ArrayList<Cars> carLoad;
+    private ArrayList<Cars> carLoad;
 
     public TransportTruck(int maxNrCars, float x, float y) {
         super(2, Color.magenta, 100, "TransportTruck", 1000, x, y);
@@ -67,7 +67,7 @@ public class TransportTruck extends Cars{
         }
     }
     
-    public void unloadCar(int amount) {
+    public void unloadCars(int amount) {
         if(amount <= carLoad.size()) {
             for (int i = 0; i < amount; i++) {
                 if(carLoad.size() > 0) {

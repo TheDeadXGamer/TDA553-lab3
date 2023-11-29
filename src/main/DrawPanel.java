@@ -19,8 +19,8 @@ public class DrawPanel extends JPanel{
     private Image scaniaImage;
     // To keep track of a singel cars position
     private Point volvoPosition = new Point(0,0);
-    private Point saabPosition = new Point(0,CarController.distanceConstant);
-    private Point scaniaPosition = new Point(0,2*CarController.distanceConstant);
+    private Point saabPosition = new Point(0,CarController.distanceConstantY);
+    private Point scaniaPosition = new Point(0,2*CarController.distanceConstantY);
     
     private ArrayList<Image> images = new ArrayList<>(arraySize);
     private ArrayList<Point> points = new ArrayList<>(arraySize);
@@ -64,7 +64,7 @@ public class DrawPanel extends JPanel{
         catch (IOException ex){
             ex.printStackTrace();
         }
-    }
+    }//Constructor
 
     // This method is called each time the panel updates/refreshes/repaints itself
     @Override

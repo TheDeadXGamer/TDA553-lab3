@@ -9,10 +9,9 @@ public class Workshop<T extends Cars> {
     private ArrayList<T> carsInWorkshop;
     
 
-    Workshop(int MaxNrOfCars){
+    public Workshop(int MaxNrOfCars){
         maxNrOfCars = MaxNrOfCars;
         carsInWorkshop = new ArrayList<>(MaxNrOfCars);
-
     }
 
     public void loadCar (T car){
@@ -21,7 +20,7 @@ public class Workshop<T extends Cars> {
         }
     }
 
-    public void unLoadCar(T car) {
+    public void unloadCar(T car) {
         if(carsInWorkshop.contains(car)) {
             carsInWorkshop.remove(car);
         }

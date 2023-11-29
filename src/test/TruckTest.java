@@ -33,7 +33,7 @@ public class TruckTest {
         myScania.startEngine();
         myScania.gas(1);
         myScania.RaiseTrailer(10);
-        Assert.assertEquals(0, myScania.GetTrailerAngle(), 0);
+        Assert.assertEquals(0, myScania.getTrailerAngle(), 0);
     }
 
     @Test
@@ -42,7 +42,7 @@ public class TruckTest {
         myScania.brake(1);
         myScania.RaiseTrailer(18);
         
-        Assert.assertEquals(18, myScania.GetTrailerAngle(), 0);
+        Assert.assertEquals(18, myScania.getTrailerAngle(), 0);
     }
 
     @Test
@@ -53,11 +53,11 @@ public class TruckTest {
         myScania.brake(1);
         myScania.RaiseTrailer(18);
 
-        float beforeLowering = myScania.GetTrailerAngle(); 
+        float beforeLowering = myScania.getTrailerAngle(); 
 
         myScania.LowerTrailer(expectedDifference);
 
-        float afterLowering = myScania.GetTrailerAngle();
+        float afterLowering = myScania.getTrailerAngle();
         float difference = beforeLowering - afterLowering;
 
         Assert.assertEquals(expectedDifference, difference, 0);

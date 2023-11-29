@@ -3,7 +3,7 @@ import java.awt.*;
 
 public class Volvo240 extends Cars{
 
-    private final float trimFactor = 1.25f;
+    private final float TRIMFACTOR = 1.25f;
     
     public Volvo240(float x,float y){
         super(4, Color.black, 100, "Volvo240", 100, x, y);
@@ -11,10 +11,10 @@ public class Volvo240 extends Cars{
     
     @Override
     public float getSpeedFactor(){
-        return getEnginePower() * 0.01f * trimFactor;
+        return getEnginePower() * 0.01f * TRIMFACTOR;
     }
 
-    public float getTrimFactor(){
-        return trimFactor;
+    public float getTRIMFACTOR(){
+        return TRIMFACTOR;
     }
 }

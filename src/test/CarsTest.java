@@ -69,7 +69,7 @@ public class CarsTest {
     @Test
     public void TestSpeedFactor() {
         float saabSpeedFactor = saab.getEnginePower() * 0.01f * saab.getTurbo();
-        float volvoSpeedFactor = volvo.getEnginePower() * 0.01f * volvo.getTrimFactor();
+        float volvoSpeedFactor = volvo.getEnginePower() * 0.01f * volvo.getTRIMFACTOR();
 
         Assert.assertTrue((saab.getSpeedFactor() == saabSpeedFactor) && (volvo.getSpeedFactor()) == volvoSpeedFactor);
     }
