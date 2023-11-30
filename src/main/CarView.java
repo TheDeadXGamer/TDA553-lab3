@@ -38,10 +38,9 @@ public class CarView extends JFrame{
     private JButton turboOffButton = new JButton("Saab Turbo off");
     private JButton liftBedButton = new JButton("Scania Lift Bed");
     private JButton lowerBedButton = new JButton("Lower Lift Bed");
-
     private JButton startButton = new JButton("Start all cars");
     private JButton stopButton = new JButton("Stop all cars");
-    
+
     // Constructor
     public CarView(String framename, CarController cc){
         this.carC = cc;
@@ -50,7 +49,7 @@ public class CarView extends JFrame{
     
     // Sets everything in place and fits everything
     private void initComponents(String title) {
-
+        
         this.setTitle(title);
         this.setPreferredSize(new Dimension(windowWidth,windowHeight));
         this.setLayout(new FlowLayout(FlowLayout.LEFT, 0, 0));

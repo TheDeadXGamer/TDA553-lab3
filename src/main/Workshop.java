@@ -7,7 +7,6 @@ public class Workshop<T extends Cars> {
     
     private int maxNrOfCars;
     private ArrayList<T> carsInWorkshop;
-    
 
     public Workshop(int MaxNrOfCars){
         maxNrOfCars = MaxNrOfCars;
