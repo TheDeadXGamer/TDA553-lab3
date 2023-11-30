@@ -4,7 +4,6 @@ import javax.swing.*;
 import main.CarModel.Cars;
 import main.CarModel.Saab95;
 import main.CarModel.Scania;
-import main.CarModel.Volvo240;
 import main.CarModel.Cars.Direction;
 
 import java.awt.event.ActionEvent;
@@ -22,10 +21,10 @@ public class CarController {
 
     // Import settings for the window the car can move on.
     private WindowSettings windowSettings = new WindowSettings();
-    private int carWidth = 100;
+    static private int carWidth = 100;
     static private int carHeight = 60;
-    private int controllerHeight = 200;
-    static int distanceConstantY = 100 + carHeight;
+    static private int controllerHeight = 200;
+    static private int distanceConstantY = 100 + carHeight;
 
     // The delay (ms) corresponds to 20 updates a sec (hz)
     private final int DELAY = 25;
@@ -38,26 +37,14 @@ public class CarController {
     // A list of cars, modify if needed
     private ArrayList<Cars> cars = new ArrayList<>();
 
-    public static void main(String[] args) {
-        // Instance of this class
-
-        CarController cc = new CarController();
-        cc.cars.add(new Volvo240(0,0));
-        
-        cc.cars.add(new Saab95(0,distanceConstantY));
-
-        cc.cars.add(new Scania(0,2*distanceConstantY));
-
-        // Start a new view and send a reference of self
-        cc.frame = new CarView("CarSim 1.0", cc);
-
-        // Start the timer
-        cc.timer.start();
-    }
-
     /* Each step the TimerListener moves all the cars in the list and tells the
     * view to update its images. Change this method to your needs.
     * */
+
+    void setFrame(CarView frame){
+        this.frame = frame;
+    }
+
     private class TimerListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             for (Cars car : cars) {
@@ -184,5 +171,20 @@ public class CarController {
         }
 
         frame.drawPanel.moveCar(cars.indexOf(car),_newXPos, _newYPos);
+    }
+
+    public void addCarToArr(Cars car){
+        cars.add(car);
+    }
+
+    public Timer getTimer(){
+        return timer;
+    }
+    public CarView getFrame(){
+        return frame;
+    }
+
+    public static int getDistanceConstantY(){
+        return distanceConstantY;
     }
 }

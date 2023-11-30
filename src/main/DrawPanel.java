@@ -19,8 +19,8 @@ public class DrawPanel extends JPanel{
     private Image scaniaImage;
     // To keep track of a singel cars position
     private Point volvoPosition = new Point(0,0);
-    private Point saabPosition = new Point(0,CarController.distanceConstantY);
-    private Point scaniaPosition = new Point(0,2*CarController.distanceConstantY);
+    private Point saabPosition = new Point(0,CarController.getDistanceConstantY());
+    private Point scaniaPosition = new Point(0,2*CarController.getDistanceConstantY());
     
     private ArrayList<Image> images = new ArrayList<>(arraySize);
     private ArrayList<Point> points = new ArrayList<>(arraySize);
